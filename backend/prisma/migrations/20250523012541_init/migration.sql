@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "Registro" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "horaInicio" DATETIME NOT NULL,
+    "horaFim" DATETIME NOT NULL,
+    "intervalo" INTEGER NOT NULL,
+    "descricao" TEXT NOT NULL,
+    "criadoEm" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
