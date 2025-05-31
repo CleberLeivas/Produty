@@ -12,6 +12,10 @@ model Registro {
   horaInicio  DateTime
   horaFim     DateTime
   intervalo   Int
-  descricao   String
+  descricao   String?
   criadoEm    DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  @@index([horaInicio, horaFim])
+  @@index([criadoEm])
 }
