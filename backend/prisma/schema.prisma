@@ -9,13 +9,15 @@ datasource db {
 
 model Registro {
   id          Int      @id @default(autoincrement())
-  horaInicio  DateTime
-  horaFim     DateTime
-  intervalo   Int
-  descricao   String?
-  criadoEm    DateTime @default(now())
-  atualizadoEm DateTime @updatedAt
+  horaInicio  DateTime @map("hora_inicio") // Data e hora de início do registro
+  horaFim     DateTime @map("hora_fim")    // Data e hora de fim do registro
+  intervalo   Int      @map("intervalo")   // Duração do registro em minutos
+  descricao   String?  @map("descricao")   // Descrição opcional do registro
+  criadoEm    DateTime @default(now()) @map("criado_em")    // Data de criação do registro
+  atualizadoEm DateTime @updatedAt @map("atualizado_em") // Data da última atualização
 
-  @@index([horaInicio, horaFim])
-  @@index([criadoEm])
+  @@map("registros") // Nome da tabela no banco de dados
+  @@unique([horaInicio, horaFim], name: "idx_hora_inicio_fim_unique")
+  @@index([horaInicio, horaFim], name: "idx_hora_inicio_fim")
+  @@index([criadoEm], name: "idx_criado_em")
 }
